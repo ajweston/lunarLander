@@ -140,20 +140,9 @@ public class Lander : MonoBehaviour
     void Update()
     {
         processInput();
-        updateCamera();
-
-        Transform landerTransform = landerObject.GetComponent<Transform>();
-
-        Vector3 camPos;
-        camPos.x = (float)(cameraRadius * Math.Sin(theta)) + landerObject.transform.position.x;
-        camPos.y = (float)(cameraRadius * Math.Cos(theta)) + landerObject.transform.position.y;
-        camPos.z = (float)landerObject.transform.position.z ;
-
         
         velocity.y += (float)-Math.Pow(acceleration.y,2)*Time.deltaTime;
 
-        camera.position = camPos;
-        camera.LookAt(landerTransform);
     }
 
     void DrawQuad(Rect position, Color color)
@@ -203,6 +192,8 @@ public class Lander : MonoBehaviour
         {
 
         }
+
+        DrawQuad(new Rect(0, 20, 220, 140), new Color(0.0f, 0.0f, 0.0f));
 
         string label = string.Format("Horizontal Velocity: {0}", rb.velocity.x);
         GUI.Label(new Rect(20, 40, 200, 20), label);
